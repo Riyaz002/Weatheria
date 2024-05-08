@@ -1,4 +1,8 @@
 package com.riyaz.weatheria.ui.home
 
-class HomeViewModel {
+import androidx.lifecycle.ViewModel
+
+
+class HomeViewModel: ViewModel() {
+
 }

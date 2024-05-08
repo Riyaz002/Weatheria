@@ -1,4 +1,8 @@
 package com.riyaz.weatheria.domain.home
 
-class GetForecasteUsecase {
+import com.riyaz.weatheria.data.repository.WeatheriaRepository
+
+class GetForecastUseCase(
+    private val repositor: WeatheriaRepository
+) {
 }

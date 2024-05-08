@@ -1,4 +1,9 @@
 package com.riyaz.weatheria.data.database
 
-class WeatheriaDao {
+import androidx.room.Dao
+
+
+@Dao
+interface WeatheriaDao {
+
 }
