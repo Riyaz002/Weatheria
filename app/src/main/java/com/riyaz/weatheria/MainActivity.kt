@@ -19,8 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
+import com.riyaz.weatheria.data.database.WeatheriaDao
 import com.riyaz.weatheria.data.remote.OpenMateoApi
-import com.riyaz.weatheria.data.remote.model.Forecast
+import com.riyaz.weatheria.data.remote.model.ForecastDTO
+import com.riyaz.weatheria.data.repository.WeatheriaRepositoryImpl
+import com.riyaz.weatheria.domain.repository.WeatherRepository
 import com.riyaz.weatheria.ui.theme.WeatheriaTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +44,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val notificationPermissionState = rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
+            val notificationPermissionState =
+                rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
 
             val requestPermissionLauncher = rememberLauncherForActivityResult(
                 ActivityResultContracts.RequestPermission()
@@ -68,48 +72,43 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     LaunchedEffect(key1 = true) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            openMeteoApi.getForecast(
+                        lifecycleScope.launch {
+                            WeatheriaRepositoryImpl(
+                                Dispatchers.IO,
+                                openMeteoApi,
+                                object : WeatheriaDao {}
+                            ).getForecast(
                                 77.102493, 28.704060,
-                                hashMapOf<String, String>().also {
-                                    it["hourly"] = "temperature_2m"
-                                }
-                            ).enqueue(
-                                object : Callback<Forecast>{
-                                    override fun onResponse(
-                                        p0: Call<Forecast>,
-                                        p1: Response<Forecast>
-                                    ) {
-                                        Log.e("result", p1.body().toString())
-                                    }
-
-                                    override fun onFailure(p0: Call<Forecast>, p1: Throwable) {
-                                        Log.e("result", p1.message.toString())
-                                    }
-
+                                hashMapOf<String, String>().also { map ->
+                                    map["hourly"] = "temperature_2m"
+                                    "current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m"
+                                        .split("&")
+                                        .forEach {
+                                            map[it.split("=").first()] = it.split("=").last()
+                                        }
                                 }
                             )
                         }
                     }
-                    Greeting("Android")
                 }
+                Greeting(name = "HELOOOW")
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    WeatheriaTheme {
-        Greeting("Android")
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        WeatheriaTheme {
+            Greeting("Android")
+        }
     }
 }

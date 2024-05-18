@@ -1,6 +1,8 @@
 package com.riyaz.weatheria.di
 
 import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.riyaz.weatheria.data.remote.OpenMateoApi
 import dagger.Module
@@ -15,7 +17,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
 
     @Provides
     @Singleton
