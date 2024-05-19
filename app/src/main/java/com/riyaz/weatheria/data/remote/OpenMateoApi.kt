@@ -8,7 +8,7 @@ import retrofit2.http.QueryMap
 
 interface OpenMateoApi: WeatherApiService {
     @GET("v1/forecast")
-    fun getForecast(
+    override fun getForecast(
         @Query("longitude") longitude: Double,
         @Query("latitude") latitude: Double,
         @QueryMap query: HashMap<String, String>
