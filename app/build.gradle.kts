@@ -23,7 +23,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.riyaz.weatheria.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -80,6 +80,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    // For instrumented tests.
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
+
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.moshi.kotlin)
     implementation(libs.converter.moshi)
@@ -97,5 +101,5 @@ dependencies {
     ksp(libs.androidx.room.room.compiler)
 
     //firebase
-    implementation(libs.firebase.bom)
+    implementation(platform(libs.firebase.bom))
 }

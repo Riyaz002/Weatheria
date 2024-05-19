@@ -24,6 +24,7 @@ import com.riyaz.weatheria.data.remote.OpenMateoApi
 import com.riyaz.weatheria.data.remote.model.ForecastDTO
 import com.riyaz.weatheria.data.repository.WeatheriaRepositoryImpl
 import com.riyaz.weatheria.domain.repository.WeatherRepository
+import com.riyaz.weatheria.ui.home.HomeScreen
 import com.riyaz.weatheria.ui.theme.WeatheriaTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -71,27 +72,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LaunchedEffect(key1 = true) {
-                        lifecycleScope.launch {
-                            WeatheriaRepositoryImpl(
-                                Dispatchers.IO,
-                                openMeteoApi,
-                                object : WeatheriaDao {}
-                            ).getForecast(
-                                77.102493, 28.704060,
-                                hashMapOf<String, String>().also { map ->
-                                    map["hourly"] = "temperature_2m"
-                                    "current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m"
-                                        .split("&")
-                                        .forEach {
-                                            map[it.split("=").first()] = it.split("=").last()
-                                        }
-                                }
-                            )
-                        }
-                    }
+                    HomeScreen(apiService = openMeteoApi)
                 }
-                Greeting(name = "HELOOOW")
             }
         }
     }
