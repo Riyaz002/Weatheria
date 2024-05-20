@@ -102,4 +102,6 @@ dependencies {
 
     //firebase
     implementation(platform(libs.firebase.bom))
+
+    implementation(libs.gson)
 }

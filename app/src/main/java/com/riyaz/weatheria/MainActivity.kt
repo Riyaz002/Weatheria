@@ -2,7 +2,6 @@ package com.riyaz.weatheria
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -16,29 +15,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
-import com.riyaz.weatheria.data.database.WeatheriaDao
 import com.riyaz.weatheria.data.remote.OpenMateoApi
-import com.riyaz.weatheria.data.remote.model.ForecastDTO
-import com.riyaz.weatheria.data.repository.WeatheriaRepositoryImpl
-import com.riyaz.weatheria.domain.repository.WeatherRepository
+import com.riyaz.weatheria.domain.usecase.GetForecastUseCase
 import com.riyaz.weatheria.ui.home.HomeScreen
 import com.riyaz.weatheria.ui.theme.WeatheriaTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var openMeteoApi: OpenMateoApi
+    lateinit var getForecastUseCase: GetForecastUseCase
 
     @OptIn(ExperimentalPermissionsApi::class)
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -72,7 +62,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(apiService = openMeteoApi)
+                    HomeScreen(getForecastUseCase = getForecastUseCase)
                 }
             }
         }
