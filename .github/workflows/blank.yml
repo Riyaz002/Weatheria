@@ -53,5 +53,5 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Run local unit tests
+    
       - run: ./gradlew test
