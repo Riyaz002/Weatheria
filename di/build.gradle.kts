@@ -36,8 +36,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -55,15 +53,8 @@ dependencies {
     debugImplementation(libs.chucker)
     releaseImplementation(libs.chucker.no.op)
 
-    implementation(libs.accompanist.permissions)
-
     //room
     implementation(libs.androidx.room.runtime)
-
-    //firebase
-    implementation(platform(libs.firebase.bom))
-
-    implementation(libs.gson)
 
     implementation(project(path = ":data"))
     implementation(project(path = ":domain"))

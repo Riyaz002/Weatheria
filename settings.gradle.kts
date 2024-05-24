@@ -22,9 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "Weatheria"
 include(":app")
 include(":data")
-include(":data2")
 include(":domain")
-include(":dependency_injection")
 include(":di")
 include(":presentation")
-include(":presetation")

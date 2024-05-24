@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.riyaz.domain.usecase.GetForecastUseCase
 import com.riyaz.presetation.home.composable.SearchBar
 import com.riyaz.presetation.shared.composable.Title
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
 
@@ -33,8 +34,13 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     getForecastUseCase: GetForecastUseCase? = null
 ) {
-
+    var viewModel: HomeViewModel
     //for blurry background
+
+    LaunchedEffect(key1 = true) {
+        viewModel = HomeViewModel()
+    }
+
     Box(
         modifier
             .fillMaxSize()
@@ -82,7 +88,9 @@ fun HomeScreen(
             )
 
             SearchBar(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 searchIcon = Icons.Outlined.Search,
                 placeholder = "Search City"
             )

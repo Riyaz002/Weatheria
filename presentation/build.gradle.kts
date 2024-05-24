@@ -59,12 +59,13 @@ dependencies {
 //    // compose testing
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
+    //hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
     // For instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.android.compiler)
 
-
     androidTestImplementation(project(":di"))
-    androidTestImplementation(project(":app"))
     implementation(project(":domain"))
 }
