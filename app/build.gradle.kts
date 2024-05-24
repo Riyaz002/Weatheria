@@ -10,7 +10,11 @@ plugins {
 }
 
 val properties = Properties()
-properties.load(FileInputStream("secret.properties"))
+try{
+    properties.load(FileInputStream("secret.properties"))
+} catch (e: Exception){
+    print("secret file not found!")
+}
 
 android {
     namespace = "com.riyaz.weatheria"
@@ -27,7 +31,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        resValue("string", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY"))
+        resValue("string", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY")?:"")
     }
 
     buildTypes {
