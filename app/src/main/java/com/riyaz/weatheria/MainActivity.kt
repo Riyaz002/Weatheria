@@ -8,16 +8,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.riyaz.domain.usecase.GetForecastUseCase
-import com.riyaz.weatheria.ui.home.HomeScreen
-import com.riyaz.weatheria.ui.theme.WeatheriaTheme
+import com.riyaz.presetation.home.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,7 +21,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var getForecastUseCase: com.riyaz.domain.usecase.GetForecastUseCase
+    lateinit var getForecastUseCase: GetForecastUseCase
 
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +48,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            WeatheriaTheme {
+            com.riyaz.presetation.theme.WeatheriaTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -61,22 +57,6 @@ class MainActivity : ComponentActivity() {
                     HomeScreen(getForecastUseCase = getForecastUseCase)
                 }
             }
-        }
-    }
-
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        WeatheriaTheme {
-            Greeting("Android")
         }
     }
 }

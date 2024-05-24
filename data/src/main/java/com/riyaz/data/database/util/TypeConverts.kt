@@ -29,9 +29,9 @@ object TypeConverts {
     }
 
     @TypeConverter
-    fun toHourlyForecast(hourly: String): Hourly{
+    fun toHourlyForecast(hourlyString: String): Hourly{
         val gson = Gson()
-        val hourly = gson.getAdapter(Hourly::class.java).fromJson(hourly)
+        val hourly = gson.getAdapter(Hourly::class.java).fromJson(hourlyString)
         return hourly
     }
 }

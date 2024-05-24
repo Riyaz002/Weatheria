@@ -12,7 +12,11 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data2" />
+            <option value="$PROJECT_DIR$/dependency_injection" />
+            <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/presetation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

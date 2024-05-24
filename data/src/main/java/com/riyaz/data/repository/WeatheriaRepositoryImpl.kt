@@ -15,6 +15,7 @@ class WeatheriaRepositoryImpl @Inject constructor(
     private val api: WeatherApiService,
     private val doa: WeatheriaDao
 ) : WeatheriaRepository {
+
     override suspend fun getForecast(
         locationCoordinate: LocationCoordinate,
         queryMap: HashMap<String, String>

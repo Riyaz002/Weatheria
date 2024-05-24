@@ -64,43 +64,19 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(libs.retrofit)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    // For instrumented tests.
-    androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
 
-    ksp(libs.moshi.kotlin.codegen)
-    implementation(libs.moshi.kotlin)
-    implementation(libs.converter.moshi)
-
-    debugImplementation(libs.chucker)
-    releaseImplementation(libs.chucker.no.op)
 
     implementation(libs.accompanist.permissions)
 
-    //room
-    implementation(libs.androidx.room.runtime)
-
-    //firebase
-    implementation(platform(libs.firebase.bom))
-
-    implementation(libs.gson)
-
     implementation(project(path = ":data"))
     implementation(project(path = ":domain"))
+    implementation(project(path = ":di"))
+    implementation(project(path = ":presentation"))
 }
