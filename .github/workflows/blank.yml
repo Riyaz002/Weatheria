@@ -32,7 +32,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: Grant execute permission
-        run: chmod -x gradlew
+        run: chmod -x ./gradlew
       - name: Build gradle
         run: ./gradlew build
 
