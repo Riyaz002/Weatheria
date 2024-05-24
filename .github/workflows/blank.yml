@@ -25,6 +25,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      - name: Set up jdk 11
+        uses: action/setup-java@v4
+        with: 
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+      - name: Grant execute permission
+        run: chmod -x gradlew
+      - name: Build gradle
+        run: ./gradlew build
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
