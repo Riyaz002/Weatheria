@@ -93,15 +93,14 @@ dependencies {
 
     implementation(libs.accompanist.permissions)
 
-
     //room
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    // To use Kotlin Symbol Processing (KSP)
-    ksp(libs.androidx.room.room.compiler)
 
     //firebase
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.gson)
+
+    implementation(project(path = ":data"))
+    implementation(project(path = ":domain"))
 }

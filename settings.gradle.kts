@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Weatheria"
 include(":app")
+include(":data")
+include(":data2")
+include(":domain")

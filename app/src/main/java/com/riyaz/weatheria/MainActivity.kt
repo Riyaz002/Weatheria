@@ -1,12 +1,10 @@
 package com.riyaz.weatheria
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,8 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
-import com.riyaz.weatheria.data.remote.OpenMateoApi
-import com.riyaz.weatheria.domain.usecase.GetForecastUseCase
+import com.riyaz.domain.usecase.GetForecastUseCase
 import com.riyaz.weatheria.ui.home.HomeScreen
 import com.riyaz.weatheria.ui.theme.WeatheriaTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,10 +25,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var getForecastUseCase: GetForecastUseCase
+    lateinit var getForecastUseCase: com.riyaz.domain.usecase.GetForecastUseCase
 
     @OptIn(ExperimentalPermissionsApi::class)
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

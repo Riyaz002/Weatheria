@@ -3,13 +3,11 @@ package com.riyaz.weatheria.di
 import android.content.Context
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.riyaz.weatheria.data.database.WeatheriaDao
-import com.riyaz.weatheria.data.database.WeatheriaDatabase
-import com.riyaz.weatheria.data.remote.OpenMateoApi
-import com.riyaz.weatheria.data.remote.WeatherApiService
-import com.riyaz.weatheria.data.repository.WeatheriaRepositoryImpl
-import com.riyaz.weatheria.domain.repository.WeatheriaRepository
-import com.riyaz.weatheria.domain.usecase.GetForecastUseCase
+import com.riyaz.data.database.WeatheriaDao
+import com.riyaz.data.database.WeatheriaDatabase
+import com.riyaz.data.remote.OpenMateoApi
+import com.riyaz.data.remote.WeatherApiService
+import com.riyaz.data.repository.WeatheriaRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,7 +66,7 @@ object AppModule {
     fun providesWeatheriaRepository(
         weatheriaApiService: WeatherApiService,
         weatheriaDao: WeatheriaDao
-    ): WeatheriaRepository = WeatheriaRepositoryImpl(
+    ): com.riyaz.domain.WeatheriaRepository = WeatheriaRepositoryImpl(
         Dispatchers.IO,
         weatheriaApiService,
         weatheriaDao
@@ -77,6 +75,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesGetForecastUseCase(
-        weatheriaRepository: WeatheriaRepository
-    ): GetForecastUseCase = GetForecastUseCase(weatheriaRepository)
+        weatheriaRepository: com.riyaz.domain.WeatheriaRepository
+    ): com.riyaz.domain.usecase.GetForecastUseCase =
+        com.riyaz.domain.usecase.GetForecastUseCase(weatheriaRepository)
 }

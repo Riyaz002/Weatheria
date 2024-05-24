@@ -20,6 +20,8 @@ ksp = "1.9.0-1.0.12"
 hilt = "2.48"
 roomRuntime = "2.6.1"
 google = "4.4.1"
+appcompat = "1.6.1"
+material = "1.12.0"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -52,6 +54,8 @@ chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", versi
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -59,4 +63,5 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 googleService = { id = "com.google.gms.google-services", version.ref = "google" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
