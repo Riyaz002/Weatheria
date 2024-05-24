@@ -64,7 +64,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - run: chmod -x gradlew
+      - run: chmod +rwx gradlew
 
       - name: Run local unit tests
         run: ./gradlew test
