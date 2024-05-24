@@ -47,3 +47,11 @@ jobs:
       # Starting gradle build  
       - name: Build gradle
         run: ./gradlew build
+        
+  test: 
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Run local unit tests
+      - run: ./gradlew test
