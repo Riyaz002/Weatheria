@@ -32,6 +32,10 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
+
+      - name: Create required files
+        run: touch secret.properties
+      
       # Making gradlew file executable for upcomming steps
       - name: Grant execute permission
         run: chmod +x gradlew
@@ -63,6 +67,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: gradle
+
+      - name: Create required files
+        run: touch secret.properties
 
       - run: chmod +rwx gradlew
 
