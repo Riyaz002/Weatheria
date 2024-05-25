@@ -32,10 +32,8 @@ jobs:
           cask: false
           test-bot: false
 
-      - env:
-          SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
       
-      - if: ([-z "$SUPER_SECRET" ])
+      - if: ([-z "${{ secrets.MARATHON_LABS_API }}" ])
         run: echo "Is null"
 
       - name: Get malinskiy repo
