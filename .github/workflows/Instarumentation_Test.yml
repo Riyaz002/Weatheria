@@ -35,7 +35,7 @@ jobs:
       - name: Get API
         env:
           SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
-        run: echo $SUPER_SECRET
+        run: if [ -z "$SUPER_SECRET" ]; then echo "NULL"; else echo "Not NULL"; 
 
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
