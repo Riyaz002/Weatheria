@@ -45,6 +45,9 @@ jobs:
 
       - name: Locate APK
         run: ls ./app/build/outputs/apk/debug
+
+      - name: Install
+        run: test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" && \ test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
       
       - name: Install Herbew
         run: brew tap malinskiy/tap && \ brew install malinskiy/tap/marathon-cloud
