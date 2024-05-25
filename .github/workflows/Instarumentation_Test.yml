@@ -44,5 +44,5 @@ jobs:
         run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest
 
       - name: Locate APK
-        run: echo ${{ github.workspace }}
+        run: ls ${{ github.workspace }}/build/output/apk/debug
 
