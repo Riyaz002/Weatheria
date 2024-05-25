@@ -46,11 +46,8 @@ jobs:
       - name: Locate APK
         run: ls ./app/build/outputs/apk/debug
 
-
-      - run: sudo apt install git -y
       - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      - run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          
+
       - name: Install Herbew
         run: brew tap malinskiy/tap && \ brew install malinskiy/tap/marathon-cloud
 
