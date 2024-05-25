@@ -27,7 +27,7 @@ fun SearchBar(
     modifier: Modifier = Modifier,
     searchIcon: ImageVector,
     placeholder: String = "",
-    onTextChange: ((String) -> Nothing)? = null
+    onTextChange: ((String) -> Unit)? = null
 ){
     val searchText = remember {
         mutableStateOf("Search Your City")

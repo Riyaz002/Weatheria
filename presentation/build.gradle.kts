@@ -61,6 +61,7 @@ dependencies {
 
     //hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
     // For instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)
