@@ -50,15 +50,17 @@ jobs:
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
       - name: Setup brew in env
-      - run: (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/riyaz/.bashrc
+        run: (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/riyaz/.bashrc
+      
       - run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+      - name: Get malinskiy repo
       - run: brew tap malinskiy/tap
 
       - name: Install the Marathon Cloud CLI
         run: brew install malinskiy/tap/marathon-cloud
         
-      - name: Set Key
+      - name: Set secret key
         run: export MARATHON_CLOUD_API_KEY=${{ secrets.MARATHON_LABS_API }}
 
       - name: Run instrumentation tests
