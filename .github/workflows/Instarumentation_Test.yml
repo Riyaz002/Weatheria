@@ -32,10 +32,10 @@ jobs:
           cask: false
           test-bot: false
 
-      - shell: bash
+      - name: Get API
         env:
           SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
-        run: echo "$SUPER_SECRET"
+        run: echo $SUPER_SECRET
 
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
