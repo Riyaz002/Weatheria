@@ -68,7 +68,9 @@ jobs:
         run: export MARATHON_CLOUD_API_KEY=${{ secrets.MARATHON_LABS_API }}
 
       - name: Run instrumentation tests
-        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key ${{ secrets.MARATHON_LABS_API }}
+        env:
+          SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
+        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key $SUPER_SECRET
 
 
       
