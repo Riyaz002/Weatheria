@@ -34,6 +34,9 @@ jobs:
       - name: Setup brew in env 2
         run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+      - name: Brew essense
+        run: sudo apt-get install build-essential
+
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
 
