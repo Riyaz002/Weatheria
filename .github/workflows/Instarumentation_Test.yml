@@ -53,7 +53,7 @@ jobs:
         run: (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/riyaz/.bashrc
 
       - name: Setup brew in env 2
-      - run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
