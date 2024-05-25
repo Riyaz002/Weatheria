@@ -31,17 +31,8 @@ jobs:
           core: false
           cask: false
           test-bot: false
-      # - name: Install brew
-      #   run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-      # - name: Setup brew in env 1
-      #   run: (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bashrc
-
-      # - name: Setup brew in env 2
-      #   run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-      # - name: Brew essense
-      #   run: sudo apt-get install build-essential
+      - run: echo ${{ secrets.MARATHON_LABS_API }}
 
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
