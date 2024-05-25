@@ -49,13 +49,14 @@ jobs:
       - name: Install brew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-      - name: Setup brew in env
+      - name: Setup brew in env 1
         run: (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/riyaz/.bashrc
-      
+
+      - name: Setup brew in env 2
       - run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
       - name: Get malinskiy repo
-      - run: brew tap malinskiy/tap
+        run: brew tap malinskiy/tap
 
       - name: Install the Marathon Cloud CLI
         run: brew install malinskiy/tap/marathon-cloud
