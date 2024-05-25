@@ -36,12 +36,12 @@ jobs:
       - name: Create required files
         run: touch secret.properties
       
-      # # Make gradlew excutable
-      # - name: Change gradlew file permission
-      #   run: chmod +x gradlew
+      # Make gradlew excutable
+      - name: Change gradlew file permission
+        run: chmod +x gradlew
 
-      # - name: Generate debug and test build
-      #   run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Generate debug and test build
+        run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest
 
       - name: Locate APK
         run: tree -d .
