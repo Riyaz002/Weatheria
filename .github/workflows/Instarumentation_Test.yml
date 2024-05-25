@@ -32,7 +32,8 @@ jobs:
           cask: false
           test-bot: false
 
-      - run: echo ${{ secrets.MARATHON_LABS_API }}
+      - name: Check api
+        run: echo ${{ secrets.MARATHON_LABS_API }}
 
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
