@@ -32,8 +32,7 @@ jobs:
           cask: false
           test-bot: false
 
-      - name: Get API
-        env:
+      - env:
           SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
       
       - if: ([-z "$SUPER_SECRET" ])
