@@ -45,3 +45,15 @@ jobs:
 
       - name: Locate APK
         run: ls ./app/build/outputs/apk/debug
+      
+      - name: Install Herbew
+        run: brew tap malinskiy/tap && \ brew install malinskiy/tap/marathon-cloud
+
+      - name: Set Key
+        run: export MARATHON_CLOUD_API_KEY=${{ secrets.MARATHON_LABS_API }}
+
+      - name: Run instrumentation tests
+        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+
+
+      
