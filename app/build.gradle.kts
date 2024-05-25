@@ -10,11 +10,7 @@ plugins {
 }
 
 val properties = Properties()
-try{
-    properties.load(FileInputStream("secret.properties"))
-} catch (e: Exception){
-    print("secret file not found!")
-}
+ properties.load(FileInputStream("secret.properties"))
 
 android {
     namespace = "com.riyaz.weatheria"
