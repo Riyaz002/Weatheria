@@ -25,23 +25,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Get token
-        env:
-          SECRET_TOKEN: ${{ secrets.MARATHON_LABS_API }}
-        run: echo env.SECRET_TOKEN
+      # - name: Get token
+      #   env:
+      #     SECRET_TOKEN: ${{ secrets.MARATHON_LABS_API }}
+      #   run: echo env.SECRET_TOKEN
       
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-        with:
-          core: false
-          cask: false
-          test-bot: false
+      # - name: Set up Homebrew
+      #   uses: Homebrew/actions/setup-homebrew@master
+      #   with:
+      #     core: false
+      #     cask: false
+      #     test-bot: false
 
-      - name: Get malinskiy repo
-        run: brew tap malinskiy/tap
+      # - name: Get malinskiy repo
+      #   run: brew tap malinskiy/tap
 
-      - name: Install the Marathon Cloud CLI
-        run: brew install malinskiy/tap/marathon-cloud
+      # - name: Install the Marathon Cloud CLI
+      #   run: brew install malinskiy/tap/marathon-cloud
 
       - name: Set up jdk 21
         uses: actions/setup-java@v3
@@ -58,19 +58,22 @@ jobs:
       - name: Change gradlew file permission
         run: chmod +x gradlew
 
-      - name: Generate debug and test build
-        run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest
+      # - name: Generate debug and test build
+      #   run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest
+  
+      # - name: Set secret key
+      #   run: export MARATHON_CLOUD_API_KEY=${{ secrets.MARATHON_LAB }}
 
-      - name: Locate APK
-        run: ls ./app/build/outputs/apk/debug
-        
-      - name: Set secret key
-        run: export MARATHON_CLOUD_API_KEY=${{ secrets.MARATHON_LAB }}
+      # - name: Run instrumentation tests
+      #   env:
+      #     SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
+      #   run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key ${{ secrets.MARATHON_LAB }}
 
-      - name: Run instrumentation tests
-        env:
-          SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
-        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key ${{ secrets.MARATHON_LAB }}
+      - name: Run emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          script: ./gradlew connectedCheck
 
 
       
