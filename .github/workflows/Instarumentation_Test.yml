@@ -24,6 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
+      - name: Get token
+        env:
+          SECRET_TOKEN: ${{ secrets.MARATHON_LABS_API }}
+        run: echo env.SECRET_TOKEN
       
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -65,7 +70,7 @@ jobs:
       - name: Run instrumentation tests
         env:
           SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
-        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key $SUPER_SECRET
+        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key env.SUPER_SECRET
 
 
       
