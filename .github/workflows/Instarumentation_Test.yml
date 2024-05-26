@@ -32,10 +32,6 @@ jobs:
           cask: false
           test-bot: false
 
-      
-      - if: ([-z "${{ secrets.MARATHON_LABS_API }}" ])
-        run: echo "Is null"
-
       - name: Get malinskiy repo
         run: brew tap malinskiy/tap
 
