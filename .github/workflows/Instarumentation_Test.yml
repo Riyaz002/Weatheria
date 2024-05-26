@@ -5,10 +5,10 @@ name: Instrumentation Test
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -70,7 +70,7 @@ jobs:
       - name: Run instrumentation tests
         env:
           SUPER_SECRET: ${{ secrets.MARATHON_LABS_API }}
-        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key env.SUPER_SECRET
+        run: marathon-cloud run android --application app/build/outputs/apk/debug/app-debug.apk --test-application app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --api-key $MARATHON_CLOUD_API_KEY
 
 
       
