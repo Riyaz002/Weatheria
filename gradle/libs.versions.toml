@@ -23,8 +23,7 @@ roomRuntime = "2.6.1"
 google = "4.4.1"
 appcompat = "1.6.1"
 material = "1.12.0"
-uiTestJunit4 = "1.6.7"
-uiTestManifest = "1.6.7"
+compose="1.6.7"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -48,10 +47,10 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref="compose" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref="compose" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref="compose" }
+androidx-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }

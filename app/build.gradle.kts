@@ -23,7 +23,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.riyaz.weatheria.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -71,11 +71,26 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    androidTestImplementation(libs.androidx.ui.test)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.retrofit)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    // For instrumented tests.
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
 
+    implementation(libs.converter.moshi)
+
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
 
     implementation(libs.accompanist.permissions)
+
+    implementation(libs.androidx.room.runtime)
 
     implementation(project(path = ":data"))
     implementation(project(path = ":domain"))

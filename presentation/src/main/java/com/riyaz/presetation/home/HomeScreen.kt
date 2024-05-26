@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,6 +24,7 @@ import com.riyaz.domain.usecase.GetForecastUseCase
 import com.riyaz.presetation.home.composable.SearchBar
 import com.riyaz.presetation.home.model.UIEvent
 import com.riyaz.presetation.shared.composable.Title
+import com.riyaz.presetation.util.TestTag
 
 
 @Preview
@@ -51,7 +53,7 @@ fun HomeScreen(
     ) {
         Column {
             Title(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(16.dp).testTag(TestTag.WEATHER_DESCRIPTION.tag),
                 text = homeState.value.forecast?.current?.temperature.toString() + homeState.value.forecast?.current?.apparentTemperature,
                 fontSize = 32.sp,
                 style = TextStyle(

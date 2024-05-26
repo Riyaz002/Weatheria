@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdk = 24
 
-        testInstrumentationRunner = "com.riyaz.weatheria.HiltTestRunner"
+        testInstrumentationRunner = "com.riyaz.di.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

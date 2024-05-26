@@ -1,8 +1,7 @@
-package com.riyaz.presetation
+package com.riyaz.weatheria
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import com.riyaz.weatheria.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
