@@ -79,7 +79,7 @@ jobs:
 
   instrumentation-test:
     
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
 
