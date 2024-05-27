@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.riyaz.domain.usecase.GetForecastUseCase
-import com.riyaz.presetation.home.HomeScreen
+import com.riyaz.presetation.home.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(getForecastUseCase = getForecastUseCase)
+                    SearchScreen()
                 }
             }
         }

@@ -12,7 +12,7 @@ import org.junit.Test
 
 @HiltAndroidTest
 @UninstallModules(com.riyaz.di.AppModule::class)
-class HomeScreenKtTest {
+class SearchScreenKtTest {
 
     @get:Rule(order = 0)
     val hilt = HiltAndroidRule(this)
