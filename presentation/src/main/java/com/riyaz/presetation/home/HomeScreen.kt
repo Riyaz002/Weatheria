@@ -1,64 +1,79 @@
 package com.riyaz.presetation.home
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.riyaz.presetation.home.composable.SearchBar
-import com.riyaz.presetation.home.model.UIEvent
-import com.riyaz.presetation.shared.composable.Title
-import com.riyaz.presetation.util.TestTag
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.riyaz.presetation.home.model.HomePageUIState
+import com.riyaz.presetation.shared.composable.GradiantBackground
+import com.riyaz.presetation.shared.composable.Progress
 
-
-@Preview
 @Composable
-fun SearchScreen(
-    modifier: Modifier = Modifier,
+fun HomeScreen(
+    modifier: Modifier = Modifier.fillMaxSize(),
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val viewModel: HomeViewModel = viewModel()
-    val homeState = viewModel.state.collectAsState()
+    var uiState: HomePageUIState by remember {
+        mutableStateOf(HomePageUIState.Loading)
+    }
+    val forecast = rememberUpdatedState(newValue = when(uiState){
+        is HomePageUIState.Loading -> null
+        is HomePageUIState.Loaded -> {
+            (uiState as HomePageUIState.Loaded).forecast
+        }
+    })
 
-    Box(
-        modifier.fillMaxSize().blur(1000.dp)) {
-        Box(modifier = Modifier.fillMaxSize().background(brush = Brush.linearGradient(listOf(Color.Blue, Color.Cyan, Color.White))))
+    LaunchedEffect(key1 = true) {
+        viewModel.uiState.collect{
+            uiState = it
+        }
     }
 
-    //content
-    Box(
-        modifier.fillMaxSize()
-    ) {
-        Column {
-            Title(
-                modifier = Modifier.padding(16.dp).testTag(TestTag.WEATHER_DESCRIPTION.tag),
-                text = "Around your city",
-                fontSize = 32.sp,
-                style = TextStyle(
-                    color = Color.hsl(202F, 0.65F, 0.48F)
-                )
-            )
+    LaunchedEffect(key1 = true) {
+        viewModel.loadPage()
+    }
 
-            SearchBar(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
-                placeholder = "Search City",
-                onTextChange = {
-                    viewModel.onEvent(UIEvent.OnSearch(it))
-                }
+
+    GradiantBackground()
+    Column(modifier = modifier) {
+        if(uiState is HomePageUIState.Loading) Progress()
+        else{
+            Text(
+                modifier = Modifier.padding(top = 73.dp, start = 16.dp),
+                text = buildAnnotatedString {
+                    forecast.value?.current?.let {
+                        append(it.temperature.toString())
+                        withStyle(
+                            style = SpanStyle(
+                                fontSize = 56.sp
+                            )
+                        ){
+                            append(forecast.value?.currentUnit?.temperature)
+                        }
+                    }
+                },
+                style = TextStyle(
+                    fontSize = 56.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
             )
         }
     }

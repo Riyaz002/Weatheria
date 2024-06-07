@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.riyaz.data.database.WeatheriaDao
 import com.riyaz.data.database.WeatheriaDatabase
+import com.riyaz.data.remote.IpGeolocationApi
 import com.riyaz.data.remote.OpenMateoApi
 import com.riyaz.data.remote.WeatherApiService
 import com.riyaz.data.repository.WeatheriaRepositoryImpl
@@ -52,16 +53,32 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideWeatheriaApiService(
+    fun provideOpenMateoApiService(
         httpClient: OkHttpClient
-    ): WeatherApiService {
-        return Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .client(httpClient)
-            .build()
-            .create(OpenMateoApi::class.java)
-    }
+    ): OpenMateoApi = Retrofit.Builder()
+        .baseUrl(OpenMateoApi.BASE_URL)
+        .client(httpClient)
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+        .create(OpenMateoApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideIpGeolocationApiService(
+        httpClient: OkHttpClient
+    ): IpGeolocationApi = Retrofit.Builder()
+        .baseUrl(IpGeolocationApi.BASE_URL)
+        .client(httpClient)
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+        .create(IpGeolocationApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWeatheriaApiService(
+        openMateoApi: OpenMateoApi,
+        googleApi: IpGeolocationApi
+    ): WeatherApiService = WeatherApiService(openMateoApi, googleApi)
 
     @Provides
     @Singleton
@@ -73,11 +90,4 @@ object TestAppModule {
         weatheriaApiService,
         weatheriaDao
     )
-
-    @Provides
-    @Singleton
-    fun providesGetForecastUseCase(
-        weatheriaRepository: com.riyaz.domain.WeatheriaRepository
-    ): com.riyaz.domain.usecase.GetForecastUseCase =
-        com.riyaz.domain.usecase.GetForecastUseCase(weatheriaRepository)
 }

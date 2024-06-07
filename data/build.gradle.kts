@@ -1,8 +1,14 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
 }
+
+val properties = Properties()
+properties.load(FileInputStream("secret.properties"))
 
 android {
     namespace = "com.riyaz.data"
@@ -13,6 +19,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY"))
+        buildConfigField("String", "IP_GEOLOCATION_API_KEY", properties.getProperty("IP_GEOLOCATION_API_KEY"))
     }
 
     buildTypes {
@@ -30,6 +38,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -61,6 +73,9 @@ dependencies {
     // For instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.android.compiler)
+
+    //location
+    implementation(libs.play.services.location)
 
     //import domain
     implementation(project(path = ":domain"))

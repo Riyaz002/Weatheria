@@ -1,4 +1,4 @@
-package com.riyaz.presetation.home.composable
+package com.riyaz.presetation.search.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,7 +29,7 @@ fun SearchBar(
     onTextChange: ((String) -> Unit)? = null
 ){
     val searchText = remember {
-        mutableStateOf("Search Your City")
+        mutableStateOf("")
     }
     TextField(
             leadingIcon = {

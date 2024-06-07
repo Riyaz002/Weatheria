@@ -1,4 +1,4 @@
-package com.riyaz.weatheria.data.remote.model
+package com.riyaz.data.remote.model.forecast
 
 
 enum class WeatherConditions(val code: Int, val description: String) {

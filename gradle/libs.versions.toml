@@ -16,6 +16,7 @@ activityCompose = "1.8.2"
 composeBom = "2023.08.00"
 moshiKotlin = "1.15.0"
 moshiKotlinCodegen = "1.15.0"
+playServicesLocation = "21.3.0"
 retrofit = "2.11.0"
 ksp = "1.9.0-1.0.12"
 hilt = "2.48"
@@ -57,6 +58,7 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

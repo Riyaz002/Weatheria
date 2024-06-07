@@ -1,4 +1,4 @@
-package com.riyaz.domain.model
+package com.riyaz.domain.model.forecast
 
 data class Current(
     val apparentTemperature: Double,

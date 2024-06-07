@@ -2,8 +2,8 @@ package com.riyaz.data.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.riyaz.domain.model.Current
-import com.riyaz.domain.model.Hourly
+import com.riyaz.domain.model.forecast.Current
+import com.riyaz.domain.model.forecast.Hourly
 
 @Entity(tableName = "forecast_table")
 data class Forecast(

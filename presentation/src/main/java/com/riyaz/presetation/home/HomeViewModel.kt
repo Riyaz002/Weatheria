@@ -1,43 +1,61 @@
 package com.riyaz.presetation.home
 
+import android.location.Location
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.riyaz.domain.model.LocationCoordinate
-import com.riyaz.domain.usecase.GetForecastUseCase
-import com.riyaz.presetation.home.model.HomePageState
-import com.riyaz.presetation.home.model.UIEvent
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.riyaz.domain.model.forecast.LocationCoordinate
+import com.riyaz.presetation.home.model.HomePageUIState
 import kotlinx.coroutines.flow.MutableStateFlow
+import com.riyaz.domain.usecase.GetForecastUseCase
+import com.riyaz.domain.usecase.GetLocationInfoUseCase
+import com.riyaz.domain.util.LocationManager
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class HomeViewModel @Inject constructor(val getForecastUseCase: GetForecastUseCase) : ViewModel() {
-    val state = MutableStateFlow(HomePageState())
+class HomeViewModel @Inject constructor(
+    private val getForecastUseCase: GetForecastUseCase,
+    private val getLocationInfoUseCase: GetLocationInfoUseCase,
+    private val locationManager: LocationManager
+) : ViewModel() {
+    val uiState = MutableStateFlow<HomePageUIState>(HomePageUIState.Loading)
 
-    init {
-        viewModelScope.launch {
-            state.update { it.copy(forecast = getForecastUseCase(
-                LocationCoordinate(77.102493, 28.704060),
-                hashMapOf<String, String>().also { map ->
-                    map["hourly"] = "temperature_2m"
-                    "current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m"
-                        .split("&")
-                        .forEach {
-                            map[it.split("=").first()] = it.split("=").last()
-                        }
-                })
-            ) }
+    private fun loadForecast(locationCoordinate: LocationCoordinate) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val forecast = getForecastUseCase(locationCoordinate)
+            uiState.update {
+                HomePageUIState.Loaded(forecast)
+            }
         }
     }
 
-    fun onEvent(event: UIEvent) {
-        when (event) {
-            is UIEvent.OnSearch -> {
-                Log.e("TEST", event.searchValue)
+    private fun getLocationInfo(locationCoordinate: LocationCoordinate) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getLocationInfoUseCase(locationCoordinate).also {
+                Log.e("location", it.toString())
+            }
+        }
+    }
+
+    fun loadPage(){
+        listenToLocation(
+            onLocationUpdate = {
+                loadForecast(LocationCoordinate(it.longitude, it.latitude))
+                getLocationInfo(LocationCoordinate(it.longitude, it.latitude))
+            }
+        )
+    }
+
+    private fun listenToLocation(
+        onLocationUpdate: (Location) -> Unit
+    ) {
+        viewModelScope.launch {
+            locationManager.listenToLocation().collect{
+                onLocationUpdate.invoke(it)
             }
         }
     }

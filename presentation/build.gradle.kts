@@ -70,4 +70,5 @@ dependencies {
 
     androidTestImplementation(project(":di"))
     implementation(project(":domain"))
+    implementation(project(":data"))
 }

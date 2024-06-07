@@ -1,6 +1,6 @@
-package com.riyaz.data.remote.model
+package com.riyaz.data.remote.model.forecast
 
-import com.riyaz.domain.model.Hourly
+import com.riyaz.domain.model.forecast.Hourly
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

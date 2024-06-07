@@ -1,7 +1,7 @@
-package com.riyaz.data.remote.model
+package com.riyaz.data.remote.model.forecast
 
-import com.riyaz.weatheria.data.remote.model.WeatherConditions.Companion.condition
-import com.riyaz.domain.model.*
+import com.riyaz.data.remote.model.forecast.WeatherConditions.Companion.condition
+import com.riyaz.domain.model.forecast.Current
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

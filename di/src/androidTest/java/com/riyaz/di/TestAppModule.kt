@@ -5,9 +5,12 @@ import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.riyaz.data.database.WeatheriaDao
 import com.riyaz.data.database.WeatheriaDatabase
+import com.riyaz.data.location.LocationManagerImpl
+import com.riyaz.data.remote.IpGeolocationApi
 import com.riyaz.data.remote.OpenMateoApi
 import com.riyaz.data.remote.WeatherApiService
 import com.riyaz.data.repository.WeatheriaRepositoryImpl
+import com.riyaz.domain.util.LocationManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,16 +55,22 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideWeatheriaApiService(
+    fun provideGoogleApiService(
         httpClient: OkHttpClient
-    ): WeatherApiService {
-        return Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .client(httpClient)
-            .build()
-            .create(OpenMateoApi::class.java)
-    }
+    ): IpGeolocationApi = Retrofit.Builder()
+        .baseUrl(IpGeolocationApi.BASE_URL)
+        .client(httpClient)
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+        .create(IpGeolocationApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWeatheriaApiService(
+        openMateoApi: OpenMateoApi,
+        googleApi: IpGeolocationApi
+    ): WeatherApiService = WeatherApiService(openMateoApi, googleApi)
+
 
     @Provides
     @Singleton
@@ -76,8 +85,21 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun providesGetForecastUseCase(
+    fun providesForecastUseCase(
         weatheriaRepository: com.riyaz.domain.WeatheriaRepository
     ): com.riyaz.domain.usecase.GetForecastUseCase =
         com.riyaz.domain.usecase.GetForecastUseCase(weatheriaRepository)
+
+    @Provides
+    @Singleton
+    fun providesLocationInfoUseCase(
+        weatheriaRepository: com.riyaz.domain.WeatheriaRepository
+    ): com.riyaz.domain.usecase.GetLocationInfoUseCase =
+        com.riyaz.domain.usecase.GetLocationInfoUseCase(weatheriaRepository)
+
+    @Provides
+    @Singleton
+    fun providesLocationManager(
+        @ApplicationContext context: Context
+    ): LocationManager = LocationManagerImpl(context)
 }

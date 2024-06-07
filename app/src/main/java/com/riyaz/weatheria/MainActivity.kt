@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.riyaz.domain.usecase.GetForecastUseCase
-import com.riyaz.presetation.home.SearchScreen
+import com.riyaz.domain.util.LocationManager
+import com.riyaz.presetation.home.HomeScreen
+import com.riyaz.presetation.search.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var getForecastUseCase: GetForecastUseCase
 
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +29,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             val notificationPermissionState =
                 rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
+
+            val locationPermissionState =
+                rememberPermissionState(android.Manifest.permission.ACCESS_COARSE_LOCATION)
 
             val requestPermissionLauncher = rememberLauncherForActivityResult(
                 ActivityResultContracts.RequestPermission()
@@ -40,11 +43,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
+
             LaunchedEffect(notificationPermissionState) {
                 if (!notificationPermissionState.hasPermission && notificationPermissionState.shouldShowRationale) {
                     // Show rationale if needed
                 } else {
                     requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                }
+
+                if (!locationPermissionState.hasPermission && locationPermissionState.shouldShowRationale) {
+                    // Show rationale if needed
+                } else {
+                    requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 }
             }
 
@@ -54,7 +64,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SearchScreen()
+                    HomeScreen()
                 }
             }
         }
