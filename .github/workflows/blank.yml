@@ -32,10 +32,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: gradle
-
-
-      - name: Create required files
-        run: touch secret.properties
       
       # Making gradlew file executable for upcomming steps
       - name: Grant execute permission
@@ -46,7 +42,7 @@ jobs:
         run: |
           cat >> secret.properties << 'END'
           GOOGLE_API_KEY=${{ secrets.GOOGLEAPI }}
-          GOOGLE_API_KEY=${{ secrets.IPGEOAPI }}
+          IP_GEOLOCATION_API_KEY=${{ secrets.IPGEOAPI }}
           END
       
       # Cleaning project
