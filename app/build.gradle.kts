@@ -35,7 +35,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        resValue("string", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY")?:"")
+        resValue("string", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY"))
     }
 
     buildTypes {

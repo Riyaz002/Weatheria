@@ -19,8 +19,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        buildConfigField("String", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY")?:"")
-        buildConfigField("String", "IP_GEOLOCATION_API_KEY", properties.getProperty("IP_GEOLOCATION_API_KEY")?:"")
+        buildConfigField("String", "GOOGLE_API_KEY", properties.getProperty("GOOGLE_API_KEY"))
+        buildConfigField("String", "IP_GEOLOCATION_API_KEY", properties.getProperty("IP_GEOLOCATION_API_KEY"))
     }
 
     buildTypes {
