@@ -78,7 +78,7 @@ jobs:
         run: |
           cat >> secret.properties << 'END'
           GOOGLE_API_KEY=${{ secrets.GOOGLEAPI }}
-          GOOGLE_API_KEY=${{ secrets.IPGEOAPI }}
+          IP_GEOLOCATION_API_KEY=${{ secrets.IPGEOAPI }}
           END
 
       - run: chmod +rwx gradlew
@@ -106,7 +106,7 @@ jobs:
         run: |
           cat >> secret.properties << 'END'
           GOOGLE_API_KEY=${{ secrets.GOOGLEAPI }}
-          GOOGLE_API_KEY=${{ secrets.IPGEOAPI }}
+          IP_GEOLOCATION_API_KEY=${{ secrets.IPGEOAPI }}
           END
       
       - name: Change gradlew file permission
