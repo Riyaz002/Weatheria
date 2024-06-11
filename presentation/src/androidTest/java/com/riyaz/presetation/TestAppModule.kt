@@ -1,4 +1,4 @@
-package com.riyaz.weatheria
+package com.riyaz.presetation
 
 import android.content.Context
 import androidx.room.Room
@@ -20,7 +20,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(dagger.hilt.components.SingletonComponent::class)

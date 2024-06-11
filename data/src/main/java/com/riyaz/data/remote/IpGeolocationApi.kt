@@ -6,10 +6,12 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface IpGeolocationApi {
-    @GET("ipgeo?apiKey=${BuildConfig.IP_GEOLOCATION_API_KEY}")
+
+    @GET("ipgeo?apiKey=$API_KEY")
     fun getLocationInfo(): Call<LocationInfoDTO>
 
     companion object{
         const val BASE_URL = "https://api.ipgeolocation.io/"
+        const val API_KEY = BuildConfig.IP_GEOLOCATION_API_KEY
     }
 }

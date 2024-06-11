@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.riyaz.presetation.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -68,6 +68,25 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.android.compiler)
 
+    //retrofit
+    implementation(libs.retrofit)
+
+    //hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
+
+    //moshi
+    implementation(libs.converter.moshi)
+
+    //chucker
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
+
+    //room
+    implementation(libs.androidx.room.runtime)
+
+    androidTestImplementation(project(":app"))
     androidTestImplementation(project(":di"))
     implementation(project(":domain"))
     implementation(project(":data"))

@@ -13,6 +13,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -24,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.riyaz.presetation.home.model.HomePageUIState
 import com.riyaz.presetation.shared.composable.GradiantBackground
 import com.riyaz.presetation.shared.composable.Progress
+import com.riyaz.presetation.util.TestTag
 
 @Composable
 fun HomeScreen(
@@ -56,7 +58,7 @@ fun HomeScreen(
         if(uiState is HomePageUIState.Loading) Progress()
         else{
             Text(
-                modifier = Modifier.padding(top = 73.dp, start = 16.dp),
+                modifier = Modifier.padding(top = 73.dp, start = 16.dp).testTag(TestTag.WEATHER_DESCRIPTION.tag),
                 text = buildAnnotatedString {
                     forecast.value?.current?.let {
                         append(it.temperature.toString())
