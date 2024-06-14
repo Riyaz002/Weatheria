@@ -23,8 +23,7 @@ class HomeScreenKtTest {
     @get:Rule(order = 1)
     val permissionRule: GrantPermissionRule =
         GrantPermissionRule.grant(
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.POST_NOTIFICATIONS
+            android.Manifest.permission.ACCESS_COARSE_LOCATION
         )
 
     @get:Rule(order = 2)
