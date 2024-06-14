@@ -112,6 +112,9 @@ jobs:
       - name: Change gradlew file permission
         run: chmod +x gradlew
 
+      - name: Build project
+        run: ./gradlew build
+
       - name: Run emulator
         uses: reactivecircus/android-emulator-runner@v2.30.1
         with:
