@@ -21,14 +21,14 @@ class HomeScreenKtTest {
     val hilt = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val compose = createAndroidComposeRule<MainActivity>()
-
-    @get:Rule(order = 2)
     val permissionRule: GrantPermissionRule =
         GrantPermissionRule.grant(
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.POST_NOTIFICATIONS
         )
+
+    @get:Rule(order = 2)
+    val compose = createAndroidComposeRule<MainActivity>()
 
     @Before
     fun setUp() {
