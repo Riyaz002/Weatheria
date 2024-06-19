@@ -118,8 +118,10 @@ jobs:
       - name: Create script
         run: |
           cat >> temp.sh << 'END'
-          telnet localhost 5552
+          telnet localhost 5554
+          exit
           echo "" | cat >> ~/.emulator_console_auth_token
+          telnet localhost 5554
           geo fix 66 77
           exit
           ./gradlew app:connectedCheck
