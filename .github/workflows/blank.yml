@@ -115,11 +115,19 @@ jobs:
       - name: Build project
         run: ./gradlew build
 
+      - name: Create script
+        run: |
+          cat >> temp.sh << 'END'
+          telnet localhost 5552
+          echo "" | cat >> ~/.emulator_console_auth_token
+          ./gradlew app:connectedCheck
+          ./gradlew di:connectedCheck
+          ./gradlew presentation:connectedCheck
+          END
+          chmod +x temp.sh
+
       - name: Run emulator
         uses: reactivecircus/android-emulator-runner@v2.30.1
         with:
           api-level: 29
-          script: |
-              ./gradlew app:connectedCheck
-              ./gradlew di:connectedCheck
-              ./gradlew presentation:connectedCheck
+          script: ./temp.sh
