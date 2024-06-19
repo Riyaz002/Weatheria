@@ -130,6 +130,9 @@ jobs:
           expect "OK"
           send "exit\r"
           EOF
+          ./gradlew app:connectedCheck
+          ./gradlew di:connectedCheck
+          ./gradlew presentation:connectedCheck
           END
           chmod +x temp.sh
 
