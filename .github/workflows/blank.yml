@@ -120,6 +120,8 @@ jobs:
           cat >> temp.sh << 'END'
           telnet localhost 5552
           echo "" | cat >> ~/.emulator_console_auth_token
+          geo fix 66 77
+          exit
           ./gradlew app:connectedCheck
           ./gradlew di:connectedCheck
           ./gradlew presentation:connectedCheck
