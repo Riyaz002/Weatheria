@@ -123,14 +123,13 @@ jobs:
           cat >> temp.sh << 'END'
           echo "" | cat >> ~/.emulator_console_auth_token
           # Automate telnet session using expect
+          expect << EOF
           spawn telnet localhost 5554
           expect "OK"
           send "geo fix 66 77\r"
           expect "OK"
           send "exit\r"
-          ./gradlew app:connectedCheck
-          ./gradlew di:connectedCheck
-          ./gradlew presentation:connectedCheck
+          EOF
           END
           chmod +x temp.sh
 
