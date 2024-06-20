@@ -121,11 +121,11 @@ jobs:
       - name: Create script
         run: |
           cat >> temp.sh << 'END'
-          echo "" | cat >> ~/.emulator_console_auth_token
           # Automate telnet session using expect
           expect << EOF
           spawn telnet localhost 5554
           expect "OK"
+          echo "" | cat >> ~/.emulator_console_auth_token
           send "geo fix 66 77\r"
           expect "OK"
           send "exit\r"
