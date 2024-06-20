@@ -125,7 +125,9 @@ jobs:
           expect << EOF
           spawn telnet localhost 5554
           expect "OK"
+          send "exit\r"
           echo "" | cat >> ~/.emulator_console_auth_token
+          spawn telnet localhost 5554
           send "geo fix 66 77\r"
           expect "OK"
           send "exit\r"
