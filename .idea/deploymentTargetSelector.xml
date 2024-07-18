@@ -4,6 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-07-18T04:03:55.654068395Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/home/riyaz/.android/avd/Pixel_3a_API_34_extension_level_7_x86_64.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="data">
         <option name="selectionMode" value="DROPDOWN" />
@@ -14,28 +22,22 @@
       <SelectionState runConfigName="presentation">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="HomeScreen">
+      <SelectionState runConfigName="converting_wrong_svg_code_gives_exception()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SearchScreenKtTest">
+      <SelectionState runConfigName="LocationManagerImplTest">
         <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="SearchScreenKtTest (1)">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="HomeScreenKtTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="HomeScreenKtTest (1)">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-10T06:37:13.746975196Z">
+        <DropdownSelection timestamp="2024-07-18T04:02:08.683301975Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=33071JEGR31163" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/home/riyaz/.android/avd/Pixel_3a_API_34_extension_level_7_x86_64.avd" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="HomeScreenKtTest">
+        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
   </component>

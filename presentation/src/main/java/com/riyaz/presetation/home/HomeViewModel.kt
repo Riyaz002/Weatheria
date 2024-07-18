@@ -26,9 +26,8 @@ class HomeViewModel @Inject constructor(
 
     private fun loadForecast(locationCoordinate: LocationCoordinate) {
         viewModelScope.launch(Dispatchers.IO) {
-            val forecast = getForecastUseCase(locationCoordinate)
             uiState.update {
-                HomePageUIState.Loaded(forecast)
+                HomePageUIState.Content(getForecastUseCase(locationCoordinate), getLocationInfoUseCase(locationCoordinate))
             }
         }
     }

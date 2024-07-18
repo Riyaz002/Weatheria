@@ -2,9 +2,11 @@ package com.riyaz.weatheria.home
 
 
 import android.os.Build
+import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.rule.GrantPermissionRule
+import com.riyaz.presetation.util.TestTag
 import com.riyaz.weatheria.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -36,9 +38,16 @@ class HomeScreenKtTest {
     }
 
     @Test
-    fun checkWeatherDescriptionText_notEmpty(): Unit = runBlocking{
-        compose.waitUntil(3000) {
-            compose.onAllNodesWithTag(com.riyaz.presetation.util.TestTag.WEATHER_DESCRIPTION.tag).fetchSemanticsNodes().size == 1
+    fun checkTemperatureLabel_notEmpty(): Unit = runBlocking{
+        compose.waitUntil(10000) {
+            compose.onNodeWithTag(TestTag.WEATHER_DESCRIPTION.tag).isDisplayed()
+        }
+    }
+
+    @Test
+    fun checkLocationLabel_notEmpty(): Unit = runBlocking{
+        compose.waitUntil(10000) {
+            compose.onNodeWithTag(TestTag.LOCATION.tag).isDisplayed()
         }
     }
 }

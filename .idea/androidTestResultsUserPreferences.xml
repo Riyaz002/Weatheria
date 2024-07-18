@@ -30,6 +30,32 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-864351599">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Google Pixel 6a" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-68868619">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Google Pixel 6a" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="327849673">
           <value>
             <AndroidTestResultsTableState>
@@ -52,6 +78,20 @@
                   <entry key="Google Pixel 6a" value="227" />
                   <entry key="Pixel_3a_API_34_extension_level_7_x86_64" value="120" />
                   <entry key="Tests" value="467" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="673655350">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Google Pixel 6a" value="120" />
+                  <entry key="Pixel_C_API_34" value="120" />
+                  <entry key="Tests" value="360" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
